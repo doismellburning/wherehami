@@ -25,3 +25,12 @@ th, td
 	font-weight: bold;
 	padding: 10px;
 }
+
+h1
+{
+	font-size: 80px;
+	font-weight: bold;
+	text-align: center;
+	padding-top: 25px;
+	padding-bottom: 25px;
+}
