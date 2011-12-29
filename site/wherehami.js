@@ -42,6 +42,7 @@ function success(position)
 	$("#maidenhead").html(location.maidenhead);
 	$("#coordinates").html(location.coordinates.latitude + ", " + location.coordinates.longitude);
 	$("#maidenhead_coordinates").html(location.maidenhead_coordinates.latitude + ", " + location.maidenhead_coordinates.longitude);
+	//$.get("stats", {maidenhead: location.maidenhead}); // TODO Sort privacy implications etc.
 
 	var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
