@@ -27,10 +27,31 @@ function maidenhead(latitude, longitude)
 
 function success(position)
 {
+	var MAP_SIZE = "320px";
+	var MAP_ZOOM = 16;
+
 	var location = maidenhead(position.coords.latitude, position.coords.longitude);
 
 	$("#result").html(location);
 	$("#result").addClass("success");
+
+	var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+	var myOptions = {
+		zoom: MAP_ZOOM,
+		center: latlng,
+		mapTypeId: google.maps.MapTypeId.ROADMAP,
+	};
+
+	var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+	var marker = new google.maps.Marker({
+		map: map,
+		position: latlng,
+		title: location,
+	});
+
+	$("#map_canvas").height(MAP_SIZE);
+	$("#map_canvas").width(MAP_SIZE);
 }
 
 function failure(error)

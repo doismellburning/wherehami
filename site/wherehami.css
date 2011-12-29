@@ -7,3 +7,10 @@
 {
 	background-color: red;
 }
+
+#map_canvas
+{
+	width: 320px;
+	height: 320px;
+	margin: auto;
+}
