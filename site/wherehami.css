@@ -1,16 +1,27 @@
-.success
-{
-	background-color: green;
-}
-
-.failure
-{
-	background-color: red;
-}
-
 #map_canvas
 {
 	width: 320px;
 	height: 320px;
 	margin: auto;
+}
+
+#coordinate_table
+{
+	width: 320px;
+	margin: auto;
+}
+
+th, td
+{
+	text-align: center !important;
+}
+
+#maidenhead
+{
+	width: 320px;
+	margin: 20px auto;
+	text-align: center;
+	font-size: 60px;
+	font-weight: bold;
+	padding: 10px;
 }

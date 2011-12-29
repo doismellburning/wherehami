@@ -1,11 +1,13 @@
-function maidenhead(latitude, longitude)
+function maidenhead(_latitude, _longitude)
 {
 	// http://en.wikipedia.org/wiki/Maidenhead_Locator_System
 	// Hacks to avoid negative numbers...
 
+	var longitude = _longitude;
 	longitude += 180;
 	longitude /= 2;
 
+	var latitude = _latitude;
 	latitude += 90;
 
 	function goat(start, offset)
@@ -22,18 +24,24 @@ function maidenhead(latitude, longitude)
 	var long3 = goat('a', Math.floor((longitude % 1) * 24));
 	var lat3 = goat('a', Math.floor((latitude % 1) * 24));
 
-	return long1 + lat1 + long2 + lat2 + long3 + lat3 + " (" + latitude + ", " + longitude + ")";
+	return {
+		maidenhead: long1 + lat1 + long2 + lat2 + long3 + lat3,
+		maidenhead_coordinates: {latitude: latitude, longitude: longitude},
+		coordinates: {latitude: _latitude, longitude: _longitude},
+	};
 }
 
 function success(position)
 {
-	var MAP_SIZE = "320px";
 	var MAP_ZOOM = 16;
 
 	var location = maidenhead(position.coords.latitude, position.coords.longitude);
 
-	$("#result").html(location);
-	$("#result").addClass("success");
+	$("#waiting").hide();
+	$("#success").show();
+	$("#maidenhead").html(location.maidenhead);
+	$("#coordinates").html(location.coordinates.latitude + ", " + location.coordinates.longitude);
+	$("#maidenhead_coordinates").html(location.maidenhead_coordinates.latitude + ", " + location.maidenhead_coordinates.longitude);
 
 	var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
@@ -47,17 +55,15 @@ function success(position)
 	var marker = new google.maps.Marker({
 		map: map,
 		position: latlng,
-		title: location,
+		title: location.maidenhead,
 	});
-
-	$("#map_canvas").height(MAP_SIZE);
-	$("#map_canvas").width(MAP_SIZE);
 }
 
 function failure(error)
 {
-	$("#result").html(error.message);
-	$("#result").addClass("failure");
+	$("#waiting").hide();
+	$("#failure").show();
+	$("#error_message").html(error.message);
 }
 	
 

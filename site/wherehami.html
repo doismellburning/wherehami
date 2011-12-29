@@ -12,8 +12,26 @@
 	<body>
 		<div class="container">
 			<div class="content">
-				<div id="result">Waiting for result</div>
-				<div id="map_canvas"></div>
+				<div id="waiting">Waiting for location...</div>
+				<div id="success">
+					<div id="maidenhead">!Maidenhead Location!</div>
+					<table id="coordinate_table">
+						<tbody>
+							<tr>
+								<th>Coordinates</th>
+								<td id="coordinates">!Coordinates!</td>
+							</tr>
+							<tr>
+								<th>Maidenhead Coordinates</th>
+								<td id="maidenhead_coordinates">!Maidenhead Coordinates!</td>
+							</tr>
+						</tbody>
+					</table>
+					<div id="map_canvas"></div>
+				</div>
+				<div id="failure">
+					<div id="error_message">!Error message here!</div>
+				</div>
 			</div>
 		</div>
 	</body>
