@@ -82,6 +82,8 @@ function show_geocoder()
 
 function geolocate()
 {
+	$("#waiting").show();
+
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(success, failure);
 	} else {
