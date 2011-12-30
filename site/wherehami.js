@@ -42,6 +42,7 @@ function show_location(latitude, longitude)
 	var location = maidenhead(latitude, longitude);
 
 	$("#waiting").hide();
+	$("#failure").hide();
 	$("#geocoder").hide();
 	$("#success").show();
 	$("#maidenhead").html(location.maidenhead);
@@ -69,6 +70,7 @@ function failure(error)
 {
 	$("#waiting").hide();
 	$("#failure").show();
+	$("#geocoder").show();
 	$("#error_message").html(error.message);
 }
 	
@@ -82,6 +84,8 @@ function show_geocoder()
 
 function geolocate()
 {
+	$("#failure").hide();
+	$("#success").hide();
 	$("#waiting").show();
 
 	if (navigator.geolocation) {
