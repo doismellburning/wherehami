@@ -101,5 +101,8 @@ $(function() {
 		show_location(place.geometry.location.lat(), place.geometry.location.lng());
 	});
 
+	$("footer a").click(function(e) {
+		$.get("click_event", {href: $(this).attr("href")});
+	});
 	$("footer a").attr("target", "_blank");
 });
