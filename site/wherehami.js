@@ -80,15 +80,18 @@ function show_geocoder()
 	$("#geocoder").show();
 }
 
-
-
-$(function() {
+function geolocate()
+{
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(success, failure);
 	} else {
 		failure("Your browser does not support Geolocation"); //TODO Improve this failure message
 	}
+}
 
+$(function() {
+
+	$("#use_geolocation").click(geolocate);
 	$(".show_geocoder").click(show_geocoder);
 
 	var geocoder_search_input = document.getElementById("geocoder_search_input");
@@ -105,4 +108,6 @@ $(function() {
 		$.get("click_event", {href: $(this).attr("href")});
 	});
 	$("footer a").attr("target", "_blank");
+
+	geolocate();
 });

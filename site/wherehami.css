@@ -55,3 +55,12 @@ h2
 	padding-top: 15px;
 	padding-bottom: 15px;
 }
+
+h3
+{
+	font-size: 30px;
+	font-weight: bold;
+	text-align: center;
+	padding-top: 5px;
+	padding-bottom: 15px;
+}
