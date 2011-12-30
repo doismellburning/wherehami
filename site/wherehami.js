@@ -100,4 +100,6 @@ $(function() {
 		var place = autocomplete.getPlace();
 		show_location(place.geometry.location.lat(), place.geometry.location.lng());
 	});
+
+	$("footer a").attr("target", "_blank");
 });
