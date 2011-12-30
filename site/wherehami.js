@@ -33,26 +33,31 @@ function maidenhead(_latitude, _longitude)
 
 function success(position)
 {
-	var MAP_ZOOM = 16;
+	show_location(position.coords.latitude, position.coords.longitude);
+}
 
-	var location = maidenhead(position.coords.latitude, position.coords.longitude);
+function show_location(latitude, longitude)
+{
+	var MAP_ZOOM = 16;
+	var location = maidenhead(latitude, longitude);
 
 	$("#waiting").hide();
+	$("#geocoder").hide();
 	$("#success").show();
 	$("#maidenhead").html(location.maidenhead);
 	$("#coordinates").html(location.coordinates.latitude + ", " + location.coordinates.longitude);
 	$("#maidenhead_coordinates").html(location.maidenhead_coordinates.latitude + ", " + location.maidenhead_coordinates.longitude);
 	//$.get("stats", {maidenhead: location.maidenhead}); // TODO Sort privacy implications etc.
 
-	var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+	var latlng = new google.maps.LatLng(latitude, longitude);
 
 	var myOptions = {
 		zoom: MAP_ZOOM,
 		center: latlng,
 		mapTypeId: google.maps.MapTypeId.ROADMAP,
 	};
+	map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 
-	var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 	var marker = new google.maps.Marker({
 		map: map,
 		position: latlng,
@@ -67,6 +72,15 @@ function failure(error)
 	$("#error_message").html(error.message);
 }
 	
+function show_geocoder()
+{
+	$("#waiting").hide();
+	$("#failure").hide();
+	$("#success").hide();
+	$("#geocoder").show();
+}
+
+
 
 $(function() {
 	if (navigator.geolocation) {
@@ -74,4 +88,16 @@ $(function() {
 	} else {
 		failure("Your browser does not support Geolocation"); //TODO Improve this failure message
 	}
+
+	$(".show_geocoder").click(show_geocoder);
+
+	var geocoder_search_input = document.getElementById("geocoder_search_input");
+	var options = {types: ["geocode"]};
+
+	autocomplete = new google.maps.places.Autocomplete(geocoder_search_input, options);
+
+	google.maps.event.addListener(autocomplete, 'place_changed', function() {
+		var place = autocomplete.getPlace();
+		show_location(place.geometry.location.lat(), place.geometry.location.lng());
+	});
 });

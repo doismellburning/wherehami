@@ -11,6 +11,18 @@
 	margin: auto;
 }
 
+#geocoder
+{
+	width: 320px;
+	margin: auto;
+}
+
+input
+{
+	width: 320px;
+	margin: auto;
+}
+
 th, td
 {
 	text-align: center !important;
@@ -33,4 +45,13 @@ h1
 	text-align: center;
 	padding-top: 25px;
 	padding-bottom: 25px;
+}
+
+h2
+{
+	font-size: 40px;
+	font-weight: bold;
+	text-align: center;
+	padding-top: 15px;
+	padding-bottom: 15px;
 }
