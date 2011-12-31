@@ -10,19 +10,19 @@ function maidenhead(_latitude, _longitude)
 	var latitude = _latitude;
 	latitude += 90;
 
-	function goat(start, offset)
+	function char_shift(start, offset)
 	{
 		return String.fromCharCode(start.charCodeAt() + offset);
 	}
 
-	var long1 = goat('A', Math.floor(longitude / 10));
-	var lat1 = goat('A', Math.floor(latitude / 10));
+	var long1 = char_shift('A', Math.floor(longitude / 10));
+	var lat1 = char_shift('A', Math.floor(latitude / 10));
 
-	var long2 = goat('0', Math.floor(longitude % 10));
-	var lat2 = goat('0', Math.floor(latitude % 10));
+	var long2 = char_shift('0', Math.floor(longitude % 10));
+	var lat2 = char_shift('0', Math.floor(latitude % 10));
 
-	var long3 = goat('a', Math.floor((longitude % 1) * 24));
-	var lat3 = goat('a', Math.floor((latitude % 1) * 24));
+	var long3 = char_shift('a', Math.floor((longitude % 1) * 24));
+	var lat3 = char_shift('a', Math.floor((latitude % 1) * 24));
 
 	return {
 		maidenhead: long1 + lat1 + long2 + lat2 + long3 + lat3,
