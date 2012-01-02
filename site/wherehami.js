@@ -86,6 +86,7 @@ function geolocate()
 {
 	$("#failure").hide();
 	$("#success").hide();
+	$("#geocoder").hide();
 	$("#waiting").show();
 
 	if (navigator.geolocation) {
@@ -114,6 +115,4 @@ $(function() {
 		$.get("click_event", {href: $(this).attr("href")});
 	});
 	$("footer a").attr("target", "_blank");
-
-	geolocate();
 });

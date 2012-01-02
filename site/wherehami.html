@@ -24,7 +24,7 @@
 				<div class="page-header">
 					<h1>Where HAM I?</h1>
 				</div>
-				<div id="waiting">
+				<div id="waiting" style="display: none">
 					<h2>Waiting for location...<h2>
 				</div>
 				<div id="success" style="display: none">
@@ -44,13 +44,13 @@
 					<div id="map_canvas"></div>
 					<h2><a class="show_geocoder" href="#">But I'm not there!</a></h2>
 				</div>
-				<div id="failure" style="display: none">
-					<div id="error_message">!Error message here!</div>
-				</div>
-				<div id="geocoder" style="display: none">
+				<div id="geocoder">
 					<h2>Where are you?</h2>
-					<h3><a id="use_geolocation" href="#">Just ask my browser!</a></h3>
+					<h3><a id="use_geolocation" href="#">Detect my location!</a></h4>
 					<input id="geocoder_search_input" type="text" name="location" />
+				</div>
+				<div id="failure" style="display: none">
+					<h3 id="error_message">!Error message here!</h3>
 				</div>
 			</div>
 		</div>
