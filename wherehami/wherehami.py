@@ -19,4 +19,4 @@ if __name__ == '__main__':
     PORT = int(os.getenv('PORT', 5000))
     DEBUG = bool(os.getenv('WHEREHAMI_DEBUG', False))
 
-    app.run(port=PORT, debug=DEBUG)
+    app.run(host='0.0.0.0', port=PORT, debug=DEBUG)
