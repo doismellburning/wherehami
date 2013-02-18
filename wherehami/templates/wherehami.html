@@ -4,7 +4,7 @@
 		<meta charset=utf-8>
 		<title>Where HAM I?</title>
 		<link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="wherehami.css" />
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='wherehami.css') }}" />
 		<script type="text/javascript">
 			var _gaq = _gaq || [];
 			_gaq.push(['_setAccount', 'UA-28003952-1']);
@@ -67,6 +67,6 @@
 		-->
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.js"></script>
 		<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=AIzaSyDw0x42Mtw5QV6sJ95-NJhVZDCXhyD6YpE&amp;sensor=false&amp;v=3.7&amp;libraries=places"></script>
-		<script type="text/javascript" src="wherehami.js"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='wherehami.js') }}"></script>
 	</body>
 </html>
