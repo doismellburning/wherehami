@@ -50,20 +50,15 @@ function show_location(latitude, longitude)
 	$("#maidenhead_coordinates").html(location.maidenhead_coordinates.latitude + ", " + location.maidenhead_coordinates.longitude);
 	//$.get("stats", {maidenhead: location.maidenhead}); // TODO Sort privacy implications etc.
 
-	var latlng = new google.maps.LatLng(latitude, longitude);
+	var map = L.map('map_canvas').setView([latitude, longitude], MAP_ZOOM);
 
-	var myOptions = {
-		zoom: MAP_ZOOM,
-		center: latlng,
-		mapTypeId: google.maps.MapTypeId.ROADMAP,
-	};
-	map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+	L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+	}).addTo(map);
 
-	var marker = new google.maps.Marker({
-		map: map,
-		position: latlng,
-		title: location.maidenhead,
-	});
+	L.marker([latitude, longitude]).addTo(map)
+		.bindPopup(location.maidenhead)
+		.openPopup();
 }
 
 function failure(error)
@@ -103,12 +98,14 @@ $(function() {
 	var geocoder_search_input = document.getElementById("geocoder_search_input");
 	var options = {types: ["geocode"]};
 
+/*
 	autocomplete = new google.maps.places.Autocomplete(geocoder_search_input, options);
 
 	google.maps.event.addListener(autocomplete, 'place_changed', function() {
 		var place = autocomplete.getPlace();
 		show_location(place.geometry.location.lat(), place.geometry.location.lng());
 	});
+*/
 
 	geolocate();
 });
